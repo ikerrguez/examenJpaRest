@@ -7,10 +7,7 @@ import java.util.List;
 
 
 public interface IPeliculaRepository extends JpaRepository <Pelicula, Long> {
-    //Un método que indique si ya existe una película con un título dado, ignorando mayúsculas y minúsculas
-    boolean existexistsByTitulo(String titulo);
+    boolean existsByTituloIgnoreCase(String titulo);
 
-    //Un método que devuelva las películas filmadas posteriormente al año que se pase, ordenadas por año de menor a mayor.
-    List<Pelicula> findByAnioOrderByAsc(int anio);
-
+    List<Pelicula> findByAnioGreaterThanOrderByAnioAsc(Integer anio);
 }
