@@ -1,10 +1,12 @@
 package edu.iker.examen.cine.model.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity 
@@ -21,6 +23,9 @@ public class Actor {
 
     @Column (nullable= false, length= 60)
     private String nacionalidad;
+
+    @OneToMany (mappedBy= "actor", cascade= CascadeType.ALL, orphanRemoval= true)
+    private Reparto reparto;
 
     public Actor() {
     }
@@ -53,6 +58,17 @@ public class Actor {
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
+
+    public Reparto getReparto() {
+        return reparto;
+    }
+
+    public void setReparto(Reparto reparto) {
+        this.reparto = reparto;
+    }
+
+
+    
 
     
     

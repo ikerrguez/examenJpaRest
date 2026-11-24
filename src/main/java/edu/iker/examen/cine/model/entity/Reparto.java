@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -27,8 +29,15 @@ public class Reparto {
     @Column 
     private double salario;
 
-    @OneToMany (mappedBy ="reparto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Pelicula> peliculas = new ArrayList<>();
+    @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn (name= "pelicula_id", nullable= false)
+    private List<Pelicula> peliculas= new ArrayList<>();
+
+    @ManyToOne 
+    @JoinColumn (name= "actor_id", nullable = false)
+    private Actor actor;
+
+    
 
     public Reparto() {
     }
@@ -61,6 +70,24 @@ public class Reparto {
     public void setSalario(double salario) {
         this.salario = salario;
     }
+
+    public List<Pelicula> getPeliculas() {
+        return peliculas;
+    }
+
+    public void setPeliculas(List<Pelicula> peliculas) {
+        this.peliculas = peliculas;
+    }
+
+    public Actor getActor() {
+        return actor;
+    }
+
+    public void setActor(Actor actor) {
+        this.actor = actor;
+    }
+
+    
 
 
     
